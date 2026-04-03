@@ -1,0 +1,16 @@
+name: Claude Code Action
+
+on: [issue_comment, pull_request_review_comment]
+
+jobs:
+  claude:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: anthropics/claude-code-action@main
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
